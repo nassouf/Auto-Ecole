@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane prefHeight="665.0" prefWidth="1357.0" style="-fx-background-color: #f4f4f9;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controllers.PaiementSceneControlleur">
+    <left>
+        <VBox spacing="20" style="-fx-background-color: #2d3e50; -fx-padding: 20; -fx-alignment: center;">
+            <Label graphicTextGap="10" style="-fx-font-size: 22px; -fx-font-weight: bold; -fx-text-fill: white;">
+                <graphic>
+                    <ImageView  fx:id="mainLogo" fitHeight="80" fitWidth="80" preserveRatio="true">
+
+                    </ImageView>
+                </graphic>
+            </Label>
+            <Separator style="-fx-background-color: #444;" />
+            <Button onAction="#switchToHome" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-size: 14px;" text="Accueil" />
+            <Button onAction="#switchToCondidat" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-size: 14px; -fx-border-radius: 5; -fx-background-radius: 5;" text="Candidats" />
+            <Button onAction="#switchToCalendar" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-size: 14px;" text="Calendrier" />
+            <Button onAction="#switchToVehicule" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-size: 14px;" text="Véhicules" />
+            <Button onAction="#switchToMoniteur" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-size: 14px;" text="Moniteurs" />
+            <Button onAction="#switchToIngenenieur" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-size: 14px;" text="Ingenieurs" />
+            <VBox spacing="5" style="-fx-alignment: center;">
+                <Button fx:id="comptabiliteButton" onAction="#toggleComptabiliteMenu" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-size: 14px;" text="Comptabilité" />
+
+                <!-- Sous-menu pour Comptabilité (initialement invisible) -->
+                <VBox fx:id="comptabiliteSubMenu" managed="false" spacing="2" style="-fx-padding: 0 0 0 10;" visible="false">
+                    <Button onAction="#switchToPaiement" style="-fx-background-color: transparent; -fx-text-fill: #aab8c2; -fx-font-size: 12px;" text="Paiement" />
+                    <Button onAction="#switchToFactures" style="-fx-background-color: transparent; -fx-text-fill: #aab8c2; -fx-font-size: 12px;" text="Factures" />
+                </VBox>
+            </VBox>
+            <Button onAction="#switchToSetting" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-size: 14px;" text="Setting" />
+            <Button onAction="#switchToStatique" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-size: 14px;" text="Tableau de bord" />
+        </VBox>
+    </left>
+    <center>
+        <VBox spacing="15">
+            <padding>
+                <Insets bottom="20" left="20" right="20" top="20" />
+            </padding>
+
+            <!-- Header -->
+            <HBox alignment="CENTER_LEFT" spacing="15">
+                <Label style="-fx-font-size: 28px; -fx-font-weight: bold; -fx-text-fill: #333;" text="Paiement" />
+                <Region HBox.hgrow="ALWAYS" />
+
+                <!-- Filtres et recherche -->
+                <VBox spacing="10">
+                    <HBox alignment="CENTER" spacing="10">
+                        <Label style="-fx-font-weight: bold;" text="Recherche et Filtrage" />
+                    </HBox>
+                    <HBox alignment="CENTER_LEFT" spacing="10">
+                        <Label text="État:" />
+                        <ComboBox fx:id="etatFilterComboBox" prefWidth="120" />
+                        <Label text="Du:" />
+                        <DatePicker fx:id="dateDebutPicker" />
+                        <Label text="Au:" />
+                        <DatePicker fx:id="dateFinPicker" />
+                        <Button onAction="#rechercherPaiements" style="-fx-background-color: #4a90e2; -fx-text-fill: white;" styleClass="action-btn" text="Rechercher" />
+                    </HBox>
+                </VBox>
+            </HBox>
+
+            <Separator />
+            <!-- Section historique des paiements -->
+            <Label style="-fx-font-weight: bold;" text="Historique des paiements" />
+
+            <TableView fx:id="paiementTableView" VBox.vgrow="ALWAYS">
+                <columns>
+                    <TableColumn fx:id="idColumn" prefWidth="50" text="ID" />
+                    <TableColumn fx:id="montantColumn" prefWidth="100" text="Montant" />
+                    <TableColumn fx:id="dateColumn" prefWidth="120" text="Date" />
+                    <TableColumn fx:id="etatColumn" prefWidth="100" text="État" />
+                    <TableColumn fx:id="faciliteColumn" prefWidth="70" text="Facilité" />
+                    <TableColumn fx:id="trancheColumn" prefWidth="70" text="Tranche" />
+                </columns>
+            </TableView>
+            <HBox alignment="CENTER" />
+            <HBox alignment="CENTER_LEFT" spacing="10">
+                <Button fx:id="validerPaiementButton" onAction="#validerPaiement" style="-fx-background-color: #2196F3; -fx-text-fill: white;" text="Valider Paiement" />
+                <Button fx:id="afficherRecuButton" onAction="#afficherRecu" style="-fx-background-color: #9C27B0; -fx-text-fill: white;" text="Afficher Reçu" />
+            </HBox>
+        </VBox>
+    </center>
+    <right>
+        <AnchorPane prefHeight="610.0" prefWidth="326.0" BorderPane.alignment="CENTER">
+            <children>
+                <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#bfe0ff" height="46.0" layoutX="17.0" layoutY="132.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="142.0" />
+                <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#2d3e50" height="457.0" layoutX="13.0" layoutY="155.0" stroke="BLACK" strokeType="INSIDE" width="278.0" />
+                <Label layoutX="33.0" layoutY="132.0" text="Ajout Paiement:" textAlignment="CENTER">
+                    <font>
+                        <Font size="16.0" />
+                    </font>
+                </Label>
+                <!-- Section de sélection du candidat -->
+                <Label layoutX="26.0" layoutY="178.0" minWidth="100" text="Candidat:" textFill="WHITE" />
+                <ChoiceBox fx:id="candidatChoiceBox" layoutX="126.0" layoutY="178.0" prefHeight="25.0" prefWidth="143.0" />
+
+                <!-- Section du montant à payer -->
+                <Label layoutX="26.0" layoutY="226.0" minWidth="100" text="Montant:" textFill="WHITE" />
+                <TextField fx:id="montantTextField" layoutX="26.0" layoutY="246.0" prefWidth="247.0" promptText="Entrez le montant" />
+                <Label layoutX="26.0" layoutY="286.0" text="Montant restant:" textFill="WHITE" />
+                <TextField fx:id="montantRestantTextField" editable="false" layoutX="26.0" layoutY="306.0" prefHeight="25.0" prefWidth="247.0" />
+
+                <!-- Section de facilité de paiement -->
+                <CheckBox fx:id="faciliteCheckBox" layoutX="29.0" layoutY="365.0" text="Paiement par facilité" textFill="WHITE" />
+                <Label layoutX="29.0" layoutY="395.0" text="Nombre de tranches:" textFill="WHITE" />
+                <Spinner fx:id="nombreTranchesSpinner" layoutX="29.0" layoutY="415.0" prefHeight="25.0" prefWidth="218.0" />
+                <Button layoutX="237.0" layoutY="619.0" mnemonicParsing="false" onAction="#ajouterPaiement" style="-fx-background-color: green;" text="Ajouter" textFill="WHITE" />
+            </children>
+        </AnchorPane>
+    </right>
+</BorderPane>

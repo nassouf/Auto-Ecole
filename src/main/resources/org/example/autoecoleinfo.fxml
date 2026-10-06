@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane style="-fx-background-color: #f4f4f9;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controllers.Autoecoleinfocontroller">
+    <left>
+        <VBox spacing="20" style="-fx-background-color: #2d3e50; -fx-padding: 20; -fx-alignment: center;">
+            <Label graphicTextGap="10" style="-fx-font-size: 22px; -fx-font-weight: bold; -fx-text-fill: white;">
+                <graphic>
+                    <ImageView  fx:id="mainLogo" fitHeight="80" fitWidth="80" preserveRatio="true">
+
+                    </ImageView>
+                </graphic>
+            </Label>
+            <Separator style="-fx-background-color: #444;" />
+            <Button onAction="#switchToHome" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-size: 14px;" text="Accueil" />
+            <Button onAction="#switchToCandidat" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-size: 14px;" text="Candidats" />
+             <Button fx:id="comptabiliteButton" onAction="#toggleComptabiliteMenu" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-size: 14px;" text="Comptabilité" />
+            <Button onAction="#switchToCalendar" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-size: 14px;" text="Calendrier" />
+            <Button onAction="#switchToVehicule" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-size: 14px;" text="Véhicules" />
+            <Button onAction="#switchToMoniteur" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-size: 14px;" text="Moniteurs" />
+            <Button onAction="#switchToIngenenieur" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-size: 14px;" text="Ingenieurs" />
+            <VBox spacing="5" style="-fx-alignment: center;">
+                <Button fx:id="comptabiliteButton" onAction="#toggleComptabiliteMenu" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-size: 14px;" text="Comptabilité" />
+
+                <!-- Sous-menu pour ComptabilitÃ© (initialement invisible) -->
+                <VBox fx:id="comptabiliteSubMenu" managed="false" spacing="2" style="-fx-padding: 0 0 0 10;" visible="false">
+                    <Button onAction="#switchToPaiement" style="-fx-background-color: transparent; -fx-text-fill: #aab8c2; -fx-font-size: 12px;" text="Paiement" />
+                    <Button onAction="#switchToFactures" style="-fx-background-color: transparent; -fx-text-fill: #aab8c2; -fx-font-size: 12px;" text="Factures" />
+                </VBox>
+            </VBox>
+            <Button style="-fx-background-color: #0078d7; -fx-text-fill: white; -fx-font-size: 14px; -fx-border-radius: 5; -fx-background-radius: 5;" text="Setting" />
+            <Button onAction="#switchToStatique" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-size: 14px;" text="Tableau de bord" />
+        </VBox>
+    </left>
+
+    <center>
+        <VBox spacing="20" style="-fx-padding: 20;">
+            <HBox alignment="CENTER_LEFT" spacing="15" style="-fx-padding: 10;">
+                <Label style="-fx-font-size: 28px; -fx-font-weight: bold; -fx-text-fill: #333;" text="Paramètres de l'Auto-École" />
+                <Region HBox.hgrow="ALWAYS" />
+                <Button fx:id="saveButton" onAction="#saveSettings" style="-fx-background-color: #27ae60; -fx-text-fill: white; -fx-font-weight: bold;" text="Enregistrer les modifications" />
+            </HBox>
+
+            <ScrollPane fitToWidth="true" style="-fx-background-color: transparent; -fx-border-color: transparent;" VBox.vgrow="ALWAYS">
+                <TabPane style="-fx-tab-min-width: 120;">
+                    <tabs>
+                        <!-- Onglet Informations -->
+                        <Tab closable="false" text="Informations">
+                            <content>
+                                <HBox spacing="30">
+                                    <!-- Left column for general information -->
+                                    <VBox spacing="20" style="-fx-background-color: white; -fx-padding: 20; -fx-background-radius: 10; -fx-border-radius: 10;" HBox.hgrow="ALWAYS">
+                                        <Label style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #2d3e50;" text="Informations générales" />
+
+                                        <HBox alignment="CENTER_LEFT" spacing="10">
+                                            <Label style="-fx-font-weight: bold; -fx-min-width: 150;" text="Nom de l'auto-école:" />
+                                            <TextField fx:id="nameField" promptText="Nom de l'auto-école" HBox.hgrow="ALWAYS" />
+                                        </HBox>
+
+                                        <HBox alignment="CENTER_LEFT" spacing="10">
+                                            <Label style="-fx-font-weight: bold; -fx-min-width: 150;" text="Description:" />
+                                            <TextArea fx:id="descriptionField" prefHeight="100" promptText="Description de l'auto-école" wrapText="true" HBox.hgrow="ALWAYS" />
+                                        </HBox>
+
+                                        <HBox alignment="CENTER_LEFT" spacing="10">
+                                            <Label style="-fx-font-weight: bold; -fx-min-width: 150;" text="Site web:" />
+                                            <TextField fx:id="websiteField" promptText="https://www.example.com" HBox.hgrow="ALWAYS" />
+                                        </HBox>
+
+                                        <HBox alignment="CENTER_LEFT" spacing="10">
+                                            <Label style="-fx-font-weight: bold; -fx-min-width: 150;" text="Téléphone:" />
+                                            <TextField fx:id="phoneField" promptText="Numéro de téléphone" HBox.hgrow="ALWAYS" />
+                                        </HBox>
+
+                                        <HBox alignment="CENTER_LEFT" spacing="10">
+                                            <Label style="-fx-font-weight: bold; -fx-min-width: 150;" text="Email:" />
+                                            <TextField fx:id="emailField" promptText="contact@example.com" HBox.hgrow="ALWAYS" />
+                                        </HBox>
+
+                                        <HBox alignment="CENTER_LEFT" spacing="10">
+                                            <Label style="-fx-font-weight: bold; -fx-min-width: 150;" text="Adresse:" />
+                                            <TextField fx:id="addressField" promptText="Adresse complète" HBox.hgrow="ALWAYS" />
+                                        </HBox>
+                                    </VBox>
+
+                                    <!-- Right column for logo customization -->
+                                    <VBox spacing="20" style="-fx-background-color: white; -fx-padding: 20; -fx-background-radius: 10; -fx-border-radius: 10; -fx-pref-width: 300;">
+                                        <Label style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #2d3e50;" text="Personnalisation du logo" />
+
+                                        <VBox alignment="CENTER" spacing="15" style="-fx-padding: 20;">
+                                            <ImageView fx:id="logoPreview" fitHeight="150" fitWidth="150" preserveRatio="true" style="-fx-border-color: #ddd; -fx-border-width: 1;" />
+
+                                            <Button fx:id="chooseLogo" onAction="#handleLogoSelection" style="-fx-background-color: #3498db; -fx-text-fill: white;" text="Choisir un logo" />
+
+                                            <Label fx:id="logoPathLabel" style="-fx-font-size: 12px; -fx-text-fill: #7f8c8d;" text="Aucun fichier sélectionné" />
+
+                                            <Separator />
+
+                                            <Label style="-fx-font-size: 14px; -fx-font-weight: bold;" text="Prévisualisation" />
+
+                                            <HBox alignment="CENTER" style="-fx-background-color: #2d3e50; -fx-padding: 10; -fx-background-radius: 5;">
+                                                <ImageView fx:id="sidebarLogoPreview" fitHeight="30" fitWidth="30" preserveRatio="true" />
+                                            </HBox>
+                                        </VBox>
+                                    </VBox>
+                                </HBox>
+                            </content>
+                        </Tab>
+
+                        <!-- Onglet Tarifs -->
+                        <Tab closable="false" text="Tarifs">
+                            <content>
+                                <HBox spacing="30">
+                                    <!-- Left column for session prices -->
+                                    <VBox spacing="20" style="-fx-background-color: white; -fx-padding: 20; -fx-background-radius: 10; -fx-border-radius: 10;" HBox.hgrow="ALWAYS">
+                                        <Label style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #2d3e50;" text="Prix des séances" />
+
+                                        <VBox spacing="15" style="-fx-border-color: #eee; -fx-border-radius: 5; -fx-padding: 15;">
+                                            <Label style="-fx-font-size: 16px; -fx-font-weight: bold;" text="Séances de code" />
+
+                                            <HBox alignment="CENTER_LEFT" spacing="10">
+                                                <Label style="-fx-min-width: 200;" text="Prix par séance de code (voiture):" />
+                                                <TextField fx:id="codeSessionPriceField" promptText="0.00" style="-fx-pref-width: 100;" />
+                                                <Label text="DT" />
+                                            </HBox>
+                                 <HBox alignment="CENTER_LEFT" layoutX="26.0" layoutY="66.0" spacing="10">
+                                    <children>
+                                       <Label style="-fx-min-width: 200;" text="Prix par séance de code (moto) :" />
+                                       <TextField fx:id="codeSessionPriceField1" promptText="0.00" style="-fx-pref-width: 100;" />
+                                       <Label text="DT" />
+                                    </children>
+                                 </HBox>
+                                 <HBox alignment="CENTER_LEFT" layoutX="26.0" layoutY="121.0" spacing="10">
+                                    <children>
+                                       <Label style="-fx-min-width: 200;" text="Prix par séance de code (camion) :" />
+                                       <TextField fx:id="codeSessionPriceField11" promptText="0.00" style="-fx-pref-width: 100;" />
+                                       <Label text="DT" />
+                                    </children>
+                                 </HBox>
+                                        </VBox>
+
+                                        <VBox spacing="15" style="-fx-border-color: #eee; -fx-border-radius: 5; -fx-padding: 15;">
+                                            <Label style="-fx-font-size: 16px; -fx-font-weight: bold;" text="Séances de conduite" />
+
+                                            <HBox alignment="CENTER_LEFT" spacing="10">
+                                                <Label style="-fx-min-width: 200;" text="Prix par séance de conduite (voiture):" />
+                                                <TextField fx:id="drivingSessionPriceField" promptText="0.00" style="-fx-pref-width: 100;" />
+                                                <Label text="DT" />
+                                            </HBox>
+                                 <HBox alignment="CENTER_LEFT" layoutX="26.0" layoutY="66.0" spacing="10">
+                                    <children>
+                                       <Label style="-fx-min-width: 200;" text="Prix par séance de conduite (moto):" />
+                                       <TextField fx:id="drivingSessionPriceField1" promptText="0.00" style="-fx-pref-width: 100;" />
+                                       <Label text="DT" />
+                                    </children>
+                                 </HBox>
+                                 <HBox alignment="CENTER_LEFT" layoutX="26.0" layoutY="106.0" spacing="10">
+                                    <children>
+                                       <Label style="-fx-min-width: 200;" text="Prix par séance de conduite (camion):" />
+                                       <TextField fx:id="drivingSessionPriceField11" promptText="0.00" style="-fx-pref-width: 100;" />
+                                       <Label text="DT" />
+                                    </children>
+                                 </HBox>
+                                        </VBox>
+                                    </VBox>
+
+                                    <!-- Right column for exam prices -->
+                                    <VBox spacing="20" style="-fx-background-color: white; -fx-padding: 20; -fx-background-radius: 10; -fx-border-radius: 10;" HBox.hgrow="ALWAYS">
+                                        <Label style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #2d3e50;" text="Prix des examens" />
+
+                                        <VBox spacing="15" style="-fx-border-color: #eee; -fx-border-radius: 5; -fx-padding: 15;">
+                                            <Label style="-fx-font-size: 16px; -fx-font-weight: bold;" text="Examen du code" />
+
+                                            <HBox alignment="CENTER_LEFT" spacing="10">
+                                                <Label style="-fx-min-width: 200;" text="Prix de l'examen de code (voiture):" />
+                                                <TextField fx:id="codeExamPriceField" promptText="0.00" style="-fx-pref-width: 100;" />
+                                                <Label text="DT" />
+                                            </HBox>
+                                 <HBox alignment="CENTER_LEFT" layoutX="26.0" layoutY="66.0" spacing="10">
+                                    <children>
+                                       <Label style="-fx-min-width: 200;" text="Prix de l'examen de code (moto):" />
+                                       <TextField fx:id="codeExamPriceField1" promptText="0.00" style="-fx-pref-width: 100;" />
+                                       <Label text="DT" />
+                                    </children>
+                                 </HBox>
+                                 <HBox alignment="CENTER_LEFT" layoutX="26.0" layoutY="121.0" spacing="10">
+                                    <children>
+                                       <Label style="-fx-min-width: 200;" text="Prix de l'examen de code (camion) :" />
+                                       <TextField fx:id="codeExamPriceField11" promptText="0.00" style="-fx-pref-width: 100;" />
+                                       <Label text="DT" />
+                                    </children>
+                                 </HBox>
+                                        </VBox>
+
+                                        <VBox spacing="15" style="-fx-border-color: #eee; -fx-border-radius: 5; -fx-padding: 15;">
+                                            <Label style="-fx-font-size: 16px; -fx-font-weight: bold;" text="Examen de conduite" />
+
+                                            <HBox alignment="CENTER_LEFT" spacing="10">
+                                                <Label style="-fx-min-width: 200;" text="Prix de l'examen de conduite (voiture):" />
+                                                <TextField fx:id="drivingExamPriceField" promptText="0.00" style="-fx-pref-width: 100;" />
+                                                <Label text="DT" />
+                                            </HBox>
+                                 <HBox alignment="CENTER_LEFT" layoutX="26.0" layoutY="66.0" spacing="10">
+                                    <children>
+                                       <Label style="-fx-min-width: 200;" text="Prix de l'examen de conduite (moto):" />
+                                       <TextField fx:id="drivingExamPriceField1" promptText="0.00" style="-fx-pref-width: 100;" />
+                                       <Label text="DT" />
+                                    </children>
+                                 </HBox>
+                                 <HBox alignment="CENTER_LEFT" layoutX="26.0" layoutY="66.0" spacing="10">
+                                    <children>
+                                       <Label style="-fx-min-width: 200;" text="Prix de l'examen de conduite (camion):" />
+                                       <TextField fx:id="drivingExamPriceField2" promptText="0.00" style="-fx-pref-width: 100;" />
+                                       <Label text="DT" />
+                                    </children>
+                                 </HBox>
+                                        </VBox>
+                                    </VBox>
+                                </HBox>
+                            </content>
+                        </Tab>
+                    </tabs>
+                </TabPane>
+            </ScrollPane>
+        </VBox>
+    </center>
+</BorderPane>

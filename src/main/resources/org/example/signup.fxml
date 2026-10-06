@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane style="-fx-background-color: #f4f6f9;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controllers.SignupSceneController">
+    <children>
+        <!-- Grid Layout -->
+        <GridPane alignment="CENTER" hgap="20" vgap="20" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+            <columnConstraints>
+                <!-- Left Image Panel: 40% width -->
+                <ColumnConstraints percentWidth="40" />
+                <!-- Right Content Panel: 60% width -->
+                <ColumnConstraints percentWidth="60" />
+            </columnConstraints>
+
+            <!-- Content Section -->
+            <VBox alignment="CENTER" spacing="30" style="-fx-padding: 30; -fx-background-color: #ffffff; -fx-border-color: #d6d6d6; -fx-border-radius: 10; -fx-background-radius: 10; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 10, 0.5, 0, 5);" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                <!-- Title -->
+                <Text style="-fx-font-size: 32px; -fx-font-family: 'Roboto Bold'; -fx-fill: #2c3e50;" text="Signup" />
+
+                <!-- Username Section -->
+                <VBox alignment="CENTER_LEFT" spacing="10">
+                    <Text style="-fx-font-size: 16px; -fx-font-family: 'Roboto'; -fx-fill: #7d7d7d;" text="Username:" />
+                    <TextField fx:id="username" promptText="Enter your username" style="-fx-font-size: 14px; -fx-padding: 5 10; -fx-border-color: #d6d6d6; -fx-border-radius: 5px; -fx-background-radius: 5px;" />
+                    <Text style="-fx-font-size: 16px; -fx-font-family: 'Roboto'; -fx-fill: #7d7d7d;" text="Password:" />
+                    <PasswordField fx:id="password" promptText="Enter your password" style="-fx-font-size: 14px; -fx-padding: 5 10; -fx-border-color: #d6d6d6; -fx-border-radius: 5px; -fx-background-radius: 5px;" />
+               <Text style="-fx-font-size: 16px; -fx-font-family: 'Roboto'; -fx-fill: #7d7d7d;" text="Retype password:" wrappingWidth="530.7578125" />
+               <PasswordField fx:id="confirmpassword" promptText="Enter your password again" style="-fx-font-size: 14px; -fx-padding: 5 10; -fx-border-color: #d6d6d6; -fx-border-radius: 5px; -fx-background-radius: 5px;" />
+               <Label fx:id="errorPassword" prefHeight="17.0" prefWidth="540.0" textFill="RED" />
+               <Text style="-fx-font-size: 16px; -fx-font-family: 'Roboto'; -fx-fill: #7d7d7d;" text="Security code:" wrappingWidth="541.7578125" />
+               <PasswordField fx:id="securityCode" promptText="Enter your password again" style="-fx-font-size: 14px; -fx-padding: 5 10; -fx-border-color: #d6d6d6; -fx-border-radius: 5px; -fx-background-radius: 5px;" />
+               <Label fx:id="errorCode" prefHeight="17.0" prefWidth="540.0" textFill="RED" />
+                </VBox>
+
+                <!-- Password Section -->
+                <VBox alignment="CENTER_LEFT" spacing="10" />
+
+                <!-- Login Button -->
+                <Button onAction="#signup" style="-fx-font-size: 16px; -fx-padding: 10 20; -fx-background-color: #3498db; -fx-text-fill: white; -fx-border-radius: 5px; -fx-background-radius: 5px;" text="Signup" />
+
+                <!-- Navigation Buttons -->
+                <HBox alignment="CENTER" spacing="40">
+                    <Button onAction="#switchToStartup" style="-fx-font-size: 14px; -fx-text-fill: #7d7d7d; -fx-background-color: transparent;" text="Back to Home" />
+                </HBox>
+            </VBox>
+         <VBox alignment="CENTER" layoutX="10.0" layoutY="10.0" spacing="10">
+            <children>
+               <ImageView fitHeight="300.0" fitWidth="400.0" preserveRatio="true">
+                  <image>
+                     <Image url="@image.png" />
+                  </image>
+               </ImageView>
+               <Text style="-fx-font-size: 18px; -fx-font-family: 'Roboto'; -fx-fill: #7d7d7d;" text="Learn driving rules easily!" />
+            </children>
+         </VBox>
+            <rowConstraints>
+                <RowConstraints />
+            </rowConstraints>
+        </GridPane>
+    </children>
+</AnchorPane>

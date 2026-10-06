@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Leaflet Map</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <style>
+        html, body, #map {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+<body>
+<div id="map"></div>
+<script>
+    // Initialize the map and set its view to Tunis
+    var map = L.map('map').setView([36.8065, 10.1815], 13);
+
+    // Load OpenStreetMap tiles
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; OpenStreetMap contributors'
+    }).addTo(map);
+
+    // Variable to hold the current marker
+    var currentMarker = null;
+
+    // Add a click listener to the map
+    map.on('click', function(e) {
+        var lat = e.latlng.lat;
+        var lng = e.latlng.lng;
+        console.log("Map clicked: ", lat, lng);
+
+        // Fetch location name from Nominatim API
+        fetch(`https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lng}&format=json`)
+            .then(response => response.json())
+            .then(data => {
+                var locationName = data.display_name;
+
+                // Check if the Java bridge is available, then call it
+                if (window.java && typeof window.java.receiveCoordinates === "function") {
+                    window.java.receiveCoordinates(lat, lng, locationName);
+                }
+
+                // Remove the old marker if it exists
+                if (currentMarker) {
+                    map.removeLayer(currentMarker);
+                }
+
+                // Add a new marker to the map at the clicked location
+                currentMarker = L.marker([lat, lng]).addTo(map)
+                    .bindPopup(locationName) // Optional: bind a popup with the location name
+                    .openPopup(); // Optional: open the popup immediately
+            })
+            .catch(error => console.error('Error fetching location:', error));
+    });
+</script>
+</body>
+</html>

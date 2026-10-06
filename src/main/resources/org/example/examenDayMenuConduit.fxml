@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.ContextMenu?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="700.0" prefWidth="1336.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controllers.ExamenConduitController">
+    <children>
+        <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#bfe0ff" height="46.0" layoutX="1024.0" layoutY="122.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="142.0" />
+        <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#2d3e50" height="445.0" layoutX="1024.0" layoutY="145.0" stroke="BLACK" strokeType="INSIDE" width="278.0" />
+        <Label fx:id="currentDay" layoutX="17.0" layoutY="14.0" prefHeight="50.0" prefWidth="231.0" text="Otober 11 2001">
+            <font>
+                <Font name="System Bold" size="24.0" />
+            </font>
+        </Label>
+        <TableView fx:id="table" layoutX="161.0" layoutY="102.0" prefHeight="527.0" prefWidth="822.0">
+            <columns>
+                <TableColumn fx:id="cin" prefWidth="81.0" text="CIN Candidat" />
+                <TableColumn fx:id="idMoniteur" text="ID Moniteur" />
+                <TableColumn fx:id="type" prefWidth="82.0" text="Type Permis" />
+                <TableColumn fx:id="date" prefWidth="92.0" text="Temp Sceance" />
+                <TableColumn fx:id="duree" minWidth="0.0" prefWidth="91.0" text="Duree Sceance" />
+                <TableColumn fx:id="matricule" prefWidth="124.0" text="Matricule Vehicule" />
+                <TableColumn fx:id="price" prefWidth="39.0" text="Price" />
+            <TableColumn fx:id="status" prefWidth="75.0" text="Resultat" />
+                <TableColumn fx:id="locationColumn" prefWidth="157.0" text="Location" />
+            </columns>
+            <contextMenu>
+                <ContextMenu>
+                    <items>
+                        <MenuItem mnemonicParsing="false" onAction="#exCodeDeleteOption" text="Delete" />
+                        <MenuItem mnemonicParsing="false" onAction="#examenEditOption" text="Edit" />
+                        <MenuItem mnemonicParsing="false" text="Voir Localisation" onAction="#goToLocation" />
+                    </items>
+                </ContextMenu>
+            </contextMenu>
+        </TableView>
+        <Button layoutX="24.0" layoutY="102.0" mnemonicParsing="false" onAction="#switchToScCode" prefHeight="58.0" prefWidth="129.0" style="-fx-background-color: bfe0ff; -fx-border-radius: 5;" text="Seances Code">
+            <font>
+                <Font name="System Bold" size="12.0" />
+            </font></Button>
+
+        <Button fx:id="switchToScConduite11" layoutX="24.0" layoutY="232.0" mnemonicParsing="false" onAction="#switchToExamenCode" prefHeight="58.0" prefWidth="129.0" style="-fx-background-color: bfe0ff; -fx-border-radius: 5;" text="Examens Code">
+            <font>
+                <Font name="System Bold" size="12.0" />
+            </font>
+        </Button>
+        <Button fx:id="switchToScConduite111" layoutX="24.0" layoutY="300.0" mnemonicParsing="false" prefHeight="58.0" prefWidth="129.0" style="-fx-background-color: #2d3e50; -fx-border-radius: 5;" text="Examens Conduit" textFill="WHITE">
+            <font>
+                <Font name="System Bold" size="12.0" />
+            </font>
+        </Button>
+        <Separator layoutX="999.0" layoutY="-10.0" orientation="VERTICAL" prefHeight="700.0" prefWidth="0.0" />
+        <ChoiceBox fx:id="typeChoice" layoutX="1042.0" layoutY="181.0" prefWidth="150.0" />
+        <Label layoutX="1042.0" layoutY="160.0" text="Type :" textFill="WHITE" />
+        <Label layoutX="1041.0" layoutY="214.0" text="Temp :" textFill="WHITE" />
+        <TextField fx:id="hrDuree" layoutX="1083.0" layoutY="291.0" prefHeight="25.0" prefWidth="32.0" />
+        <Label layoutX="1041.0" layoutY="267.0" text="Duree :" textFill="WHITE" />
+        <Label layoutX="1041.0" layoutY="295.0" text="Heure" textFill="WHITE" />
+        <TextField fx:id="minDuree" layoutX="1176.0" layoutY="291.0" prefHeight="25.0" prefWidth="32.0" />
+        <Label layoutX="1129.0" layoutY="295.0" text="Minute" textFill="WHITE" />
+        <ChoiceBox fx:id="condidatList" layoutX="1040.0" layoutY="363.0" prefHeight="25.0" prefWidth="231.0" />
+        <ChoiceBox fx:id="moniteurList" layoutX="1040.0" layoutY="418.0" prefHeight="25.0" prefWidth="231.0" />
+        <Label layoutX="1039.0" layoutY="340.0" text="Condidat :" textFill="WHITE" />
+        <Label layoutX="1039.0" layoutY="399.0" text="Moniteur :" textFill="WHITE" />
+        <Button fx:id="btajouter" layoutX="1240.0" layoutY="597.0" mnemonicParsing="false" onAction="#ajoutExConduit" prefHeight="33.0" prefWidth="62.0" style="-fx-background-color: green;" text="Ajouter" textFill="WHITE">
+            <font>
+                <Font size="13.0" />
+            </font>
+        </Button>
+        <Button layoutX="1241.0" layoutY="657.0" mnemonicParsing="false" onAction="#switchToCalendar" prefHeight="33.0" prefWidth="62.0" text="Back" />
+        <ChoiceBox fx:id="vehiculeList" layoutX="1040.0" layoutY="478.0" prefHeight="25.0" prefWidth="231.0" />
+        <Label layoutX="1040.0" layoutY="461.0" text="Vehicule :" textFill="WHITE" />
+        <TextField fx:id="hrTemp" layoutX="1088.0" layoutY="231.0" prefHeight="25.0" prefWidth="32.0" />
+        <Label layoutX="1046.0" layoutY="235.0" text="Heure" textFill="WHITE" />
+        <TextField fx:id="minTemp" layoutX="1181.0" layoutY="231.0" prefHeight="25.0" prefWidth="32.0" />
+        <Label layoutX="1134.0" layoutY="235.0" text="Minute" textFill="WHITE" />
+        <Label fx:id="errorType" layoutX="1081.0" layoutY="160.0" prefHeight="17.0" prefWidth="215.0" text="Label" textFill="RED" />
+        <Label fx:id="errorTemp" layoutX="1081.0" layoutY="214.0" prefHeight="17.0" prefWidth="215.0" text="Label" textFill="RED" />
+        <Label fx:id="errorDuree" layoutX="1081.0" layoutY="267.0" prefHeight="17.0" prefWidth="215.0" text="Label" textFill="RED" />
+        <Label fx:id="errorCondidat" layoutX="1101.0" layoutY="320.0" prefHeight="39.0" prefWidth="292.0" text="Label" textFill="RED" />
+        <Label fx:id="errorMoniteur" layoutX="1101.0" layoutY="399.0" prefHeight="17.0" prefWidth="403.0" text="Label" textFill="RED" />
+        <Label fx:id="errorVehicule" layoutX="1101.0" layoutY="461.0" prefHeight="17.0" prefWidth="372.0" text="Label" textFill="RED" />
+        <Label fx:id="errorPast" layoutX="1010.0" layoutY="616.0" prefHeight="76.0" prefWidth="215.0" text="Label" textFill="RED">
+            <font>
+                <Font name="System Italic" size="18.0" />
+            </font>
+        </Label>
+        <Button fx:id="locationButton" layoutX="1104.0" layoutY="521.0" mnemonicParsing="false" onAction="#chooseLocation" prefHeight="33.0" prefWidth="99.0" text="Select Location" />
+        <Label fx:id="locationLabel" layoutX="1039.0" layoutY="565.0" prefHeight="25.0" prefWidth="248.0" textFill="WHITE" />
+        <Label fx:id="errorLocation" layoutX="1036.0" layoutY="557.0" prefHeight="17.0" prefWidth="254.0" text="Label" textFill="RED" />
+        <Button layoutX="24.0" layoutY="165.0" mnemonicParsing="false" onAction="#switchToScConduite" prefHeight="58.0" prefWidth="129.0" style="-fx-background-color: bfe0ff; -fx-border-radius: 5;" text="Seances Conduit">
+            <font>
+                <Font name="System Bold" size="12.0" />
+            </font>
+        </Button>
+        <Button fx:id="btmodifier" layoutX="1238.0" layoutY="597.0" mnemonicParsing="false" onAction="#modifierExamen" prefHeight="33.0" prefWidth="68.0" style="-fx-background-color: green;" text="Modifier" textFill="WHITE">
+            <font>
+                <Font size="13.0" />
+            </font>
+        </Button>
+        <Button fx:id="btannuler" layoutX="1163.0" layoutY="597.0" mnemonicParsing="false" onAction="#annulerEdit" prefHeight="33.0" prefWidth="68.0" style="-fx-background-color: red;" text="Annuler" textFill="WHITE">
+            <font>
+                <Font size="13.0" />
+            </font>
+        </Button>
+      <RadioButton fx:id="isSuccess" layoutX="1022.0" layoutY="608.0" mnemonicParsing="false" text="Passé avec succes ?">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </RadioButton>
+    </children>
+</AnchorPane>

@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane prefHeight="700.0" prefWidth="1000.0" style="-fx-background-color: #f4f4f9;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controllers.HomeController">
+    <top>
+        <!-- En-tête avec titre principal -->
+        <HBox alignment="CENTER_LEFT" spacing="15" style="-fx-padding: 10;">
+            <Button onAction="#handleDexonnexion" style="-fx-background-color: #0078d7; -fx-text-fill: white; -fx-border-radius: 5; -fx-background-radius: 5; -fx-cursor: hand;" text="Déconnexion">
+                <font>
+                    <Font size="14.0" />
+                </font>
+                <graphic>
+                    <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                        <image>
+                            <Image url="@logout.png" />
+                        </image>
+                    </ImageView>
+                </graphic>
+            </Button>
+
+            <Region HBox.hgrow="ALWAYS" />
+            <Label text="Drive Safely" textFill="#0A2463">
+                <font>
+                    <Font name="System Bold" size="18.0" />
+                </font>
+            </Label>
+            <Label fx:id="telephone" text="02 36 97 61 08">
+                <graphic>
+                    <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                        <image>
+                            <Image url="@phone.png" />
+                        </image>
+                    </ImageView>
+                </graphic>
+            </Label>
+        </HBox>
+    </top>
+
+    <center>
+        <VBox spacing="20" style="-fx-padding: 10;">
+            <!-- Remplacer le StackPane de notification par une icône -->
+            <HBox alignment="CENTER_RIGHT" spacing="10">
+                <Button fx:id="notificationButton" style="-fx-background-color: transparent; -fx-cursor: hand;">
+                    <graphic>
+                        <StackPane>
+                            <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                <image>
+                                    <Image url="@alert.png" />
+                                </image>
+                            </ImageView>
+                            <Label fx:id="notificationCount" style="-fx-background-color: #e74c3c; -fx-text-fill: white; -fx-background-radius: 10; -fx-padding: 2 5; -fx-font-size: 10;" text="0" translateX="8" translateY="-8" visible="false" />
+                        </StackPane>
+                    </graphic>
+                </Button>
+            </HBox>
+
+
+            <!-- Bannière principale -->
+            <StackPane prefHeight="150.0" style="-fx-background-color: linear-gradient(to right, #2d3e50, #4a90e2); -fx-background-radius: 10;">
+                <HBox alignment="CENTER_LEFT" spacing="20">
+                    <padding>
+                        <Insets left="30.0" />
+                    </padding>
+                    <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+                        <image>
+                            <Image url="@logo.png" />
+                        </image>
+                    </ImageView>
+                    <VBox alignment="CENTER_LEFT" spacing="10.0">
+                        <Label text="GESTION AUTO-ÉCOLE" textFill="WHITE">
+                            <font>
+                                <Font name="System Bold" size="32.0" />
+                            </font>
+                        </Label>
+                        <Label opacity="0.9" text="Conduire. Maîtriser. Réussir." textFill="WHITE">
+                            <font>
+                                <Font size="18.0" />
+                            </font>
+                        </Label>
+                    </VBox>
+                </HBox>
+                <effect>
+                    <DropShadow color="#00000040" radius="10.0" />
+                </effect>
+            </StackPane>
+
+            <!-- Contenu principal avec icônes dans des cartes -->
+        <VBox alignment="CENTER" spacing="25.0">
+                <!-- Première rangée d'icônes -->
+                <HBox alignment="CENTER" spacing="30.0">
+                    <VBox alignment="CENTER" onMouseClicked="#handleCandidatClick" spacing="10.0" style="-fx-background-color: white; -fx-background-radius: 8; -fx-padding: 15; -fx-cursor: hand;">
+                        <effect>
+                            <DropShadow color="#00000020" radius="5.0" />
+                        </effect>
+                        <StackPane prefHeight="80.0" prefWidth="80.0" style="-fx-background-color: #4a90e2; -fx-background-radius: 50%;">
+                            <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                                <image>
+                                    <Image url="@candidat.png" />
+                                </image>
+                            </ImageView>
+                        </StackPane>
+                        <Label style="-fx-font-weight: bold; -fx-font-size: 16;" text="Candidats">
+                            <font>
+                                <Font size="16.0" />
+                            </font>
+                        </Label>
+                        <Label text="Gestion des dossiers" textFill="#757575">
+                            <font>
+                                <Font size="12.0" />
+                            </font>
+                        </Label>
+                    </VBox>
+
+                    <VBox alignment="CENTER" onMouseClicked="#handleMoniteurClick" spacing="10.0" style="-fx-background-color: white; -fx-background-radius: 8; -fx-padding: 15; -fx-cursor: hand;">
+                        <effect>
+                            <DropShadow color="#00000020" radius="5.0" />
+                        </effect>
+                        <StackPane prefHeight="80.0" prefWidth="80.0" style="-fx-background-color: #4a90e2; -fx-background-radius: 50%;">
+                            <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                                <image>
+                                    <Image url="@monitures (1).png" />
+                                </image>
+                            </ImageView>
+                        </StackPane>
+                        <Label style="-fx-font-weight: bold; -fx-font-size: 16;" text="Moniteurs">
+                            <font>
+                                <Font size="16.0" />
+                            </font>
+                        </Label>
+                        <Label text="Gestion du personnel" textFill="#757575">
+                            <font>
+                                <Font size="12.0" />
+                            </font>
+                        </Label>
+                    </VBox>
+                    <VBox alignment="CENTER" onMouseClicked="#handleSatatiqueClick" spacing="10.0" style="-fx-background-color: white; -fx-background-radius: 8; -fx-padding: 15; -fx-cursor: hand;">
+                        <effect>
+                            <DropShadow color="#00000020" radius="5.0" />
+                        </effect>
+                        <StackPane prefHeight="80.0" prefWidth="80.0" style="-fx-background-color: #4a90e2; -fx-background-radius: 50%;">
+                            <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                                <image>
+                                    <Image url="@bar-chart.png" />
+                                </image>
+                            </ImageView>
+                        </StackPane>
+                        <Label style="-fx-font-weight: bold; -fx-font-size: 16;" text="Tableau de bord" />
+                        <Label style="-fx-font-size: 12;" text="Statistique" textFill="#757575" />
+                    </VBox>
+                </HBox>
+
+                <!-- Deuxième rangée d'icônes -->
+                <HBox alignment="CENTER" spacing="30.0">
+                    <VBox alignment="CENTER" onMouseClicked="#handleSeanceClick" spacing="10.0" style="-fx-background-color: white; -fx-background-radius: 8; -fx-padding: 15; -fx-cursor: hand;">
+                        <effect>
+                            <DropShadow color="#00000020" radius="5.0" />
+                        </effect>
+                        <StackPane prefHeight="80.0" prefWidth="80.0" style="-fx-background-color: #4a90e2; -fx-background-radius: 50%;">
+                            <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                                <image>
+                                    <Image url="@seances.png" />
+                                </image>
+                            </ImageView>
+                        </StackPane>
+                        <Label style="-fx-font-weight: bold; -fx-font-size: 16;" text="Séances et Examens">
+                            <font>
+                                <Font size="16.0" />
+                            </font>
+                        </Label>
+                        <Label text="Planification des cours" textFill="#757575">
+                            <font>
+                                <Font size="12.0" />
+                            </font>
+                        </Label>
+                    </VBox>
+
+                    <VBox alignment="CENTER" onMouseClicked="#handlePaiementClick" spacing="10.0" style="-fx-background-color: white; -fx-background-radius: 8; -fx-padding: 15; -fx-cursor: hand;">
+                        <effect>
+                            <DropShadow color="#00000020" radius="5.0" />
+                        </effect>
+                        <StackPane prefHeight="80.0" prefWidth="80.0" style="-fx-background-color: #4a90e2; -fx-background-radius: 50%;">
+                            <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                                <image>
+                                    <Image url="@paiement.png" />
+                                </image>
+                            </ImageView>
+                        </StackPane>
+                        <Label style="-fx-font-weight: bold; -fx-font-size: 16;" text="Paiements">
+                            <font>
+                                <Font size="16.0" />
+                            </font>
+                        </Label>
+                        <Label text="Gestion financière" textFill="#757575">
+                            <font>
+                                <Font size="12.0" />
+                            </font>
+                        </Label>
+                    </VBox>
+
+                    <VBox alignment="CENTER" onMouseClicked="#handleVehiculeClick" spacing="10.0" style="-fx-background-color: white; -fx-background-radius: 8; -fx-padding: 15; -fx-cursor: hand;">
+                        <effect>
+                            <DropShadow color="#00000020" radius="5.0" />
+                        </effect>
+                        <StackPane prefHeight="80.0" prefWidth="80.0" style="-fx-background-color: #4a90e2; -fx-background-radius: 50%;">
+                            <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                                <image>
+                                    <Image url="@vehicule.png" />
+                                </image>
+                            </ImageView>
+                        </StackPane>
+                        <Label style="-fx-font-weight: bold; -fx-font-size: 16;" text="Véhicules">
+                            <font>
+                                <Font size="16.0" />
+                            </font>
+                        </Label>
+                        <Label text="Gestion du parc auto" textFill="#757575">
+                            <font>
+                                <Font size="12.0" />
+                            </font>
+                        </Label>
+                    </VBox>
+                    <VBox alignment="CENTER" onMouseClicked="#handleFinancementClick" spacing="10.0" style="-fx-background-color: white; -fx-background-radius: 8; -fx-padding: 15; -fx-cursor: hand;">
+                        <effect>
+                            <DropShadow color="#00000020" radius="5.0" />
+                        </effect>
+                        <StackPane prefHeight="80.0" prefWidth="80.0" style="-fx-background-color: #4a90e2; -fx-background-radius: 50%;">
+                            <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                                <image>
+                                    <Image url="@finance.png" />
+                                </image>
+                            </ImageView>
+                        </StackPane>
+                        <Label style="-fx-font-weight: bold; -fx-font-size: 16;" text="Financement" />
+                        <Label style="-fx-font-size: 12;" text="Aides et facilités" textFill="#757575" />
+                    </VBox>
+                </HBox>
+
+        </VBox>
+        </VBox>
+    </center>
+
+    <bottom>
+        <VBox>
+            <!-- Séparateur avant le pied de page -->
+            <Separator />
+
+            <!-- Pied de page avec copyright et bouton de paramètres -->
+            <HBox alignment="CENTER" spacing="20" style="-fx-background-color: #2d3e50; -fx-padding: 15;">
+                <Label text="© 2025 Road to Freedom - Tous droits réservés" textFill="WHITE" />
+                <Region HBox.hgrow="ALWAYS" />
+                <Button onAction="#handleSettingClick" style="-fx-background-color: transparent; -fx-cursor: hand;">
+                    <graphic>
+                        <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@setting.png" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                </Button>
+
+            </HBox>
+        </VBox>
+    </bottom>
+</BorderPane>

@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane style="-fx-background-color: #f4f4f9;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controllers.DashboardController">
+    <left>
+        <VBox spacing="20" style="-fx-background-color: #2d3e50; -fx-padding: 20; -fx-alignment: center;">
+            <Label graphicTextGap="10" style="-fx-font-size: 22px; -fx-font-weight: bold; -fx-text-fill: white;">
+            <graphic>
+                <ImageView  fx:id="mainLogo" fitHeight="80" fitWidth="80" preserveRatio="true">
+
+                </ImageView>
+            </graphic>
+        </Label>
+            <Separator style="-fx-background-color: #444;" />
+            <Button onAction="#switchToHome" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-size: 14px;" text="Accueil" />
+            <Button onAction="#switchToCandidat" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-size: 14px;" text="Candidats" />
+             <Button fx:id="comptabiliteButton" onAction="#toggleComptabiliteMenu" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-size: 14px;" text="Comptabilité" />
+            <Button onAction="#switchToCalendar" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-size: 14px;" text="Calendrier" />
+            <Button onAction="#switchToVehicule" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-size: 14px;" text="Véhicules" />
+            <Button onAction="#switchToMoniteur" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-size: 14px;" text="Moniteurs" />
+            <Button onAction="#switchToIngenenieur" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-size: 14px;" text="Ingenieurs" />
+            <VBox spacing="5" style="-fx-alignment: center;">
+                <Button fx:id="comptabiliteButton" onAction="#toggleComptabiliteMenu" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-size: 14px;" text="Comptabilité" />
+
+                <!-- Sous-menu pour ComptabilitÃ© (initialement invisible) -->
+                <VBox fx:id="comptabiliteSubMenu" managed="false" spacing="2" style="-fx-padding: 0 0 0 10;" visible="false">
+                    <Button onAction="#switchToPaiement" style="-fx-background-color: transparent; -fx-text-fill: #aab8c2; -fx-font-size: 12px;" text="Paiement" />
+                    <Button onAction="#switchToFactures" style="-fx-background-color: transparent; -fx-text-fill: #aab8c2; -fx-font-size: 12px;" text="Factures" />
+                </VBox>
+            </VBox>
+            <Button onAction="#switchToSetting" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-size: 14px;" text="Setting" />
+            <Button style="-fx-background-color: #0078d7; -fx-text-fill: white; -fx-font-size: 14px; -fx-border-radius: 5; -fx-background-radius: 5;" text="Tableau de bord" />
+        </VBox>
+    </left>
+
+    <center>
+        <VBox spacing="20" style="-fx-padding: 20;">
+            <!-- En-tête -->
+            <HBox alignment="CENTER_LEFT" spacing="15" style="-fx-padding: 10;">
+                <Label style="-fx-font-size: 28px; -fx-font-weight: bold; -fx-text-fill: #333;" text="Tableau de Bord" />
+                <Region HBox.hgrow="ALWAYS" />
+                <HBox alignment="CENTER" spacing="10">
+                    <Label style="-fx-font-weight: bold;" text="Période :" />
+                    <DatePicker fx:id="startDatePicker" promptText="Date début" />
+                    <Label text="à" />
+                    <DatePicker fx:id="endDatePicker" promptText="Date fin" />
+                    <Button fx:id="filterButton" onAction="#applyDateFilter" style="-fx-background-color: #27ae60; -fx-text-fill: white;" text="Filtrer" />
+                </HBox>
+            </HBox>
+
+            <ScrollPane fitToWidth="true" style="-fx-background-color: transparent; -fx-border-color: transparent;" VBox.vgrow="ALWAYS">
+                <VBox spacing="20">
+                    <!-- Indicateurs clés de performance -->
+                    <GridPane hgap="20" vgap="20">
+                        <columnConstraints>
+                            <ColumnConstraints percentWidth="25" />
+                            <ColumnConstraints percentWidth="25" />
+                            <ColumnConstraints percentWidth="25" />
+                            <ColumnConstraints percentWidth="25" />
+                        </columnConstraints>
+
+                        <!-- KPI 1: Revenus totaux -->
+                        <VBox alignment="CENTER" style="-fx-background-color: white; -fx-padding: 15; -fx-background-radius: 10;" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                            <Label style="-fx-font-size: 14px; -fx-text-fill: #7f8c8d;" text="Revenus totaux" />
+                            <Label fx:id="totalRevenueLabel" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #27ae60;" text="0 DT" />
+                        </VBox>
+
+                        <!-- KPI 2: Nombre de candidats -->
+                        <VBox alignment="CENTER" style="-fx-background-color: white; -fx-padding: 15; -fx-background-radius: 10;" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                            <Label style="-fx-font-size: 14px; -fx-text-fill: #7f8c8d;" text="Nombre de candidats" />
+                            <Label fx:id="totalCandidatesLabel" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #2980b9;" text="0" />
+                        </VBox>
+
+                        <!-- KPI 3: Taux de réussite global -->
+                        <VBox alignment="CENTER" style="-fx-background-color: white; -fx-padding: 15; -fx-background-radius: 10;" GridPane.columnIndex="2" GridPane.rowIndex="0">
+                            <Label style="-fx-font-size: 14px; -fx-text-fill: #7f8c8d;" text="Taux de réussite global" />
+                            <Label fx:id="successRateLabel" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #e74c3c;" text="0%" />
+                        </VBox>
+
+                        <!-- KPI 4: Séances réalisées -->
+                        <VBox alignment="CENTER" style="-fx-background-color: white; -fx-padding: 15; -fx-background-radius: 10;" GridPane.columnIndex="3" GridPane.rowIndex="0">
+                            <Label style="-fx-font-size: 14px; -fx-text-fill: #7f8c8d;" text="Séances réalisées" />
+                            <Label fx:id="totalSessionsLabel" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #9b59b6;" text="0" />
+                        </VBox>
+                  <rowConstraints>
+                     <RowConstraints />
+                  </rowConstraints>
+                    </GridPane>
+
+                    <!-- Graphiques - ligne 1 -->
+                    <HBox spacing="20">
+                        <!-- Graphique 1: Revenus par type de permis -->
+                        <VBox spacing="10" style="-fx-background-color: white; -fx-padding: 15; -fx-background-radius: 10;" HBox.hgrow="ALWAYS">
+                            <Label style="-fx-font-size: 16px; -fx-font-weight: bold;" text="Revenus par type de permis" />
+                            <PieChart fx:id="revenusByLicenseTypeChart" legendVisible="true" />
+                        </VBox>
+
+                        <!-- Graphique 2: Taux de réussite par type de permis -->
+                        <VBox spacing="10" style="-fx-background-color: white; -fx-padding: 15; -fx-background-radius: 10;" HBox.hgrow="ALWAYS">
+                            <Label style="-fx-font-size: 16px; -fx-font-weight: bold;" text="Taux de réussite par type de permis" />
+                            <BarChart fx:id="successRateByLicenseTypeChart">
+                                <xAxis>
+                                    <CategoryAxis label="Type de permis" />
+                                </xAxis>
+                                <yAxis>
+                                    <NumberAxis label="Taux de réussite (%)" upperBound="100" />
+                                </yAxis>
+                            </BarChart>
+                        </VBox>
+                    </HBox>
+
+                    <!-- Graphiques - ligne 2 -->
+                    <HBox spacing="20">
+                        <!-- Graphique 3: Utilisation des véhicules -->
+                        <VBox spacing="10" style="-fx-background-color: white; -fx-padding: 15; -fx-background-radius: 10;" HBox.hgrow="ALWAYS">
+                            <HBox alignment="CENTER_LEFT" spacing="10">
+                                <Label style="-fx-font-size: 16px; -fx-font-weight: bold;" text="Utilisation des véhicules" />
+                                <Region HBox.hgrow="ALWAYS" />
+                                <ComboBox fx:id="vehicleTypeComboBox" onAction="#updateVehicleUsageChart" promptText="Type de véhicule" />
+                            </HBox>
+                            <BarChart fx:id="vehicleUsageChart">
+                                <xAxis>
+                                    <CategoryAxis label="Matricule" />
+                                </xAxis>
+                                <yAxis>
+                                    <NumberAxis label="Nombre de séances" />
+                                </yAxis>
+                            </BarChart>
+                        </VBox>
+
+                        <VBox spacing="10" style="-fx-background-color: white; -fx-padding: 15; -fx-background-radius: 10;" HBox.hgrow="ALWAYS">
+                            <Label style="-fx-font-size: 16px; -fx-font-weight: bold;" text="Évolution des paiements" />
+                            <BarChart fx:id="paymentsChart">
+                                <xAxis>
+                                    <CategoryAxis label="Mois" />
+                                </xAxis>
+                                <yAxis>
+                                    <NumberAxis label="Montant (DT)" />
+                                </yAxis>
+                            </BarChart>
+                        </VBox>
+                    </HBox>
+                </VBox>
+            </ScrollPane>
+        </VBox>
+    </center>
+</BorderPane>
